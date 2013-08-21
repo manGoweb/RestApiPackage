@@ -1,26 +1,21 @@
 
-SkeletonPackage
+RestApiPackage
 ===============
 
-SkeletonPackage je kostra balíčku pro *Skeleton21*.
+Balíček pro vytváření JSON REST API v aplikacích založených na *Skeleton21*.
 
 Balíček slouží k verzování a distribuci části funkčnosti webové aplikace včetně presenterů, šablon, rout, migrací atp.
 
 Od běžného composerového balíčku se liší v tom, že jednotlivé části jsou při instalaci rozkopírovány na příslušná místa
 skeletonové aplikace.
 
-Pokud to není vyloženě nutné, nevytvářejte balíček pro Skeleton21, ale běžný composerový balíček.
+####obsahuje:
+- rozšíření uživatele o autentizaci klíčem API (entita `User`)
+- logování API požadavků do databáze (entita `ApiRequest`)
+- podporu pro API: `ApiPresenter`, `ApiResponse`, `RestRoute`, validaci JSON schémat (balíček *RestApiBase*)
 
-
-Vytvoření nového balíčku:
--------------------------
-- Naklonujte tento repozitář
-- Změňte jméno a popis balíčku v souboru `composer.json`
-- Změňte namespace a výchozí parametry routeru v `app\Router.php`
-- Změňte namespace třídy `Package` a namespace routeru v souboru `app\Package.php`
-- Případně upravte další nastavení v metodě `Package::register()` (registrace služeb, repozitářů atp.)
-- Upravte výchozí konfiguraci balíčku v souboru `config.neon`
-- Upravte toto readme, ale uveďte odkaz na původní verzi (https://github.com/Clevis/SkeletonPackage/blob/master/readme.md)
+####todo:
+- presenter pro debugování požadavků na API (přenést z Lamaicy a dodělat)
 
 
 Instalace balíčku:

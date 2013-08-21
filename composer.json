@@ -1,7 +1,7 @@
 {
-	"name": "clevis/skeleton-package",
+	"name": "clevis/rest-api-package",
 	"type": "clevis-skeleton-package",
-	"description": "Skeleton of packages for Skeleton21",
+	"description": "Base components for application with a JSON REST API",
 	"homepage": "http://clevis.cz",
 	"license": "BSD-3-Clause",
 	"authors": [
@@ -13,8 +13,20 @@
 
 	"require": {
 		"php": ">= 5.3.7",
+		"clevis/rest-api-base": "@dev",
+		"clevis/users-package": "@dev"
+	},
+	"require-dev": {
+		"nette/tester": "@dev",
 		"nette/nette": "@dev"
 	},
+
+	"repositories": [
+		{
+			"type": "vcs",
+			"url": "https://github.com/Clevis/RestApiBase.git"
+		}
+	],
 
 	"autoload": {
 		"classmap": ["app/"]

@@ -1,8 +1,7 @@
 <?php
 
-namespace Package; // todo: změň při vytvoření balíčku
+namespace Clevis\RestApi;
 
-use Package\Router; // todo: změň při vytvoření balíčku
 use Nette\Configurator;
 use Nette\DI\Container;
 
@@ -24,14 +23,14 @@ class Package
 		$configurator->addConfig(__DIR__ . '/config.neon', FALSE);
 
 		/** @var Container $container */
-		$configurator->onAfter[] = function (Container $container) {
+		//$configurator->onAfter[] = function (Container $container) {
 
 			// registrace rout
-			$container->router[] = new Router;
+			//$container->router[] = new Router;
 
 			// registrace jmenného prostoru presenterů
-			$container->getService('nette.presenterFactory')->registerNamespace(__NAMESPACE__);
-		};
+			//$container->getService('nette.presenterFactory')->registerNamespace(__NAMESPACE__);
+		//};
 	}
 
 }
