@@ -12,8 +12,8 @@ use Orm;
  *
  * Rozšiřuje uživatele z balíčku Users o vlastnoti pro API (apiKey a expiraci)
  *
- * @property string $apiKey
- * @property DateTime $apiKeyExpirationDate
+ * @property string|NULL $apiKey
+ * @property DateTime|NULL $apiKeyExpirationDate
  *
  * @property Orm\OneToMany $apiRequests {1:m Clevis\RestApi\ApiRequestsRepository $user}
  */
