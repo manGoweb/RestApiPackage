@@ -17,7 +17,12 @@ use Orm;
  *
  * @property Orm\OneToMany $apiRequests {1:m Clevis\RestApi\ApiRequestsRepository $user}
  */
-class User extends Users\User
+class User extends Users\User implements IApiUser
 {
+
+	public function getApiKey()
+	{
+		return $this->getValue('apiKey');
+	}
 
 }
