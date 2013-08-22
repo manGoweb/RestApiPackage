@@ -61,7 +61,7 @@ class ApiLogger extends Object implements IApiLogger
 			'url' => (string) $httpRequest->url,
 			'headers' => $this->serializeHeaders($httpRequest->headers),
 			'body' => $requestBody,
-			'apiVersion' => $httpRequest->getHeader('X-Api-Version'),
+			'apiVersion' => $httpRequest->getHeader('X-Api-Version') ?: '',
 			'user' => $user,
 			'action' => $action,
 			'responseCode' => $response->getResponseCode(),
