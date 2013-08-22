@@ -48,7 +48,7 @@ class ApiLogger extends Object implements IApiLogger
 		IApiUser $user = NULL
 	) {
 		$params = $request->getParameters();
-		$action = @$params['action'] ? $this->request->presenterName . ':' . $params['action'] : NULL;
+		$action = @$params['action'] ? $request->presenterName . ':' . $params['action'] : NULL;
 
 		// zahodit veškeré změny
 		$this->orm->clean();
@@ -60,7 +60,7 @@ class ApiLogger extends Object implements IApiLogger
 			'method' => $httpRequest->method,
 			'url' => (string) $httpRequest->url,
 			'headers' => $this->serializeHeaders($httpRequest->headers),
-			'body' => $this->rawPostData,
+			'body' => $requestBody,
 			'apiVersion' => $httpRequest->getHeader('X-Api-Version'),
 			'user' => $user,
 			'action' => $action,
