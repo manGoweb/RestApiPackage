@@ -4,9 +4,16 @@
 
 parameters:
 	repositories:
-#		repositoryName: Namespace\RepositoryClass
+		users: Clevis\RestApi\UsersRepository
+		apiRequests: Clevis\RestApi\ApiRequestsRespository
 
 services:
-#	repositoryServiceName:
-#		class: %repositories.repositoryName%
-#		factory: @orm.getRepository(repositoryName)
+	apiAuthenticator: Clevis\RestApi\ApiAuthenticator
+	apiLogger: Clevis\RestApi\ApiLogger
+
+	usersRepository:
+		class: %repositories.users%
+		factory: @orm.getRepository(users)
+	apiRequestsRepository:
+		class: %repositories.apiRequests%
+		factory: @orm.getRepository(apiRequests)
