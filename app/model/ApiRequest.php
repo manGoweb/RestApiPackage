@@ -2,6 +2,7 @@
 
 namespace Clevis\RestApi;
 
+use Clevis;
 use Clevis\Skeleton\Entity;
 use DateTime;
 
@@ -22,7 +23,7 @@ use DateTime;
  * @property string $remoteHost
  * @property DateTime $createdAt {default now}
  *
- * @property User|NULL $user {m:1 Clevis\RestApi\UsersRepository $apiRequests}
+ * @property Clevis\RestApi\User|NULL $user {m:1 Clevis\RestApi\UsersRepository $apiRequests}
  */
 class ApiRequest extends Entity
 {
