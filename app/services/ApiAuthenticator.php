@@ -52,13 +52,16 @@ class ApiAuthenticator extends Object implements IApiAuthenticator
 	public function authenticate($apiKey, $requestData = NULL)
 	{
 		/** @var User $user */
-		$user = $this->users->getByApiKey($apiKey);
-		if ($user && !$user->apiKeyExpirationDate || $user->apiKeyExpirationDate > new DateTime)
+		if ($apiKey)
 		{
-			return $user;
+			$user = $this->users->getByApiKey($apiKey);
+			if ($user && !$user->apiKeyExpirationDate || $user->apiKeyExpirationDate > new DateTime)
+			{
+				return $user;
+			}
 		}
 
-		if (!$requestData || !$this->authenticator)
+		if (!$this->authenticator || !$requestData || !isset($requestData->username) || !isset($requestData->password))
 		{
 			return NULL;
 		}
@@ -66,15 +69,15 @@ class ApiAuthenticator extends Object implements IApiAuthenticator
 		try
 		{
 			// zkusí uživatele přihlásit
-			$user = $this->authenticator->authenticate($requestData);
-
+			$identity = $this->authenticator->authenticate(array($requestData->username, $requestData->password));
+			$user = $this->users->getById($identity->getId());
 			$user->apiKey = $this->createApiKey($user);
 			if ($this->lifeTime)
 			{
 				$user->apiKeyExpirationDate = new DateTime($this->lifeTime);
 			}
 
-			$this->users->persitAndflush($user);
+			$this->users->persistAndFlush($user);
 
 			return $user;
 		}
