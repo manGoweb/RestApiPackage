@@ -13,7 +13,7 @@ use DateTime;
  * @property string $method
  * @property string $url
  * @property string $headers
- * @property string $body
+ * @property string|NULL $body
  * @property string $apiVersion
  * @property string $action
  * @property int    $responseCode

@@ -39,7 +39,12 @@ class ApiLogger extends Object implements IApiLogger
 	/**
 	 * Zaloguje požadavek uživatele
 	 *
-	 * @param ApiResponse
+	 * @param Http\Request $httpRequest
+	 * @param Http\Response $httpResponse
+	 * @param Application\Request $request
+	 * @param ApiResponse $response
+	 * @param string|NULL $requestBody
+	 * @param IApiUser $user
 	 */
 	public function logRequest(
 		Http\Request $httpRequest, Http\Response $httpResponse,
