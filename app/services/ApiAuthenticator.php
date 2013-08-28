@@ -55,7 +55,7 @@ class ApiAuthenticator extends Object implements IApiAuthenticator
 		if ($apiKey)
 		{
 			$user = $this->users->getByApiKey($apiKey);
-			if ($user && !$user->apiKeyExpirationDate || $user->apiKeyExpirationDate > new DateTime)
+			if ($user && (!$user->apiKeyExpirationDate || $user->apiKeyExpirationDate > new DateTime))
 			{
 				return $user;
 			}
