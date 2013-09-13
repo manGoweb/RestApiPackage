@@ -1,4 +1,3 @@
-
 RestApiPackage
 ===============
 
@@ -22,7 +21,11 @@ Instalace balíčku:
 ------------------
 Balíčky se instalují *Composerem* pomocí *SkeletonPackageInstalleru*. Ten se stará o zkopírování všech souborů na správná místa.
 
-Balíček přidejte do závislostí v souboru `composer.json` v projektu.
+Balíček přidejte do závislostí v souboru `composer.json` v projektu (do sekce require).
+
+Do sekce repositories přidejte další dvě adresy: tento repozitář a RestApiBase.
+
+Spusťte `composer update --prefer-dist`.
 
 V projektu balíček aktivujete zavoláním registrátoru v metodě `onInitModules()` v `Configuratoru`:
 
