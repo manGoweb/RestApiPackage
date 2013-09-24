@@ -7,6 +7,7 @@ use Nette\Object;
 use Nette\Utils\Json;
 use Nette\Application;
 use Clevis\Skeleton\Orm\RepositoryContainer;
+use Orm\IEntity;
 
 
 /**
@@ -67,7 +68,7 @@ class ApiLogger extends Object implements IApiLogger
 			'headers' => $this->serializeHeaders($httpRequest->headers),
 			'body' => $requestBody,
 			'apiVersion' => $httpRequest->getHeader('X-Api-Version') ?: '',
-			'user' => $user,
+			'user' => is_scalar($user) || ($user instanceof IEntity) ? $user : NULL,
 			'action' => $action,
 			'responseCode' => $response->getResponseCode(),
 			'responseHeaders' => $this->serializeHeaders($httpResponse->headers),
