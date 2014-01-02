@@ -22,7 +22,7 @@ class ApiAuthenticator extends Object implements IApiAuthenticator
 	private $lifeTime = '+30 days';
 
 	/** @var UsersRepository */
-	private $users;
+	protected $users;
 
 	/** @var Authenticator */
 	private $authenticator;
@@ -71,20 +71,32 @@ class ApiAuthenticator extends Object implements IApiAuthenticator
 			// zkusí uživatele přihlásit
 			$identity = $this->authenticator->authenticate(array($requestData->username, $requestData->password));
 			$user = $this->users->getById($identity->getId());
-			$user->apiKey = $this->createApiKey($user);
-			if ($this->lifeTime)
-			{
-				$user->apiKeyExpirationDate = new DateTime($this->lifeTime);
-			}
-
-			$this->users->persistAndFlush($user);
-
+			$this->postAuthenticate($user);
 			return $user;
 		}
 		catch (AuthenticationException $e)
 		{
 			return NULL;
 		}
+	}
+
+	/**
+	 * Creates API key and sets expiration time.
+	 *
+	 * @param IApiUser $user
+	 * @return IApiUser
+	 */
+	protected function postAuthenticate($user)
+	{
+		$user->apiKey = $this->createApiKey($user);
+		if ($this->lifeTime)
+		{
+			$user->apiKeyExpirationDate = new DateTime($this->lifeTime);
+		}
+
+		$this->users->persistAndFlush($user);
+
+		return $user;
 	}
 
 	/**
