@@ -8,6 +8,7 @@ use Nette\Utils\Json;
 use Nette\Application;
 use Clevis\Skeleton\Orm\RepositoryContainer;
 use Orm\IEntity;
+use Nette\Utils\Strings;
 
 
 /**
@@ -59,6 +60,9 @@ class ApiLogger extends Object implements IApiLogger
 		// zahodit veškeré změny
 		$this->orm->clean();
 		$this->orm->purge();
+
+		// nelogovat hesla
+		$requestBody = Strings::replace($requestBody, '/"password"\\s*:\\s*".*?"/', '"password":"*****"');
 
 		/** @var ApiRequest $log */
 		$log = new $this->class;
